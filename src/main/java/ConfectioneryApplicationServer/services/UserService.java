@@ -1,5 +1,6 @@
 package ConfectioneryApplicationServer.services;
 
+import ConfectioneryApplicationServer.models.ShopCart;
 import lombok.RequiredArgsConstructor;
 import javax.transaction.Transactional;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -12,12 +13,14 @@ import ConfectioneryApplicationServer.output.UserAlreadyExistsException;
 import ConfectioneryApplicationServer.models.User;
 import ConfectioneryApplicationServer.models.UserRealize;
 import ConfectioneryApplicationServer.repositories.UserRepository;
+import ConfectioneryApplicationServer.models.ShopCart;
 
 @Service
 @RequiredArgsConstructor
 public class UserService implements UserDetailsService {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
+    private ShopCart shopCart;
 
     @Transactional
     public void addNewUser(Register request) throws UserAlreadyExistsException {
@@ -26,6 +29,7 @@ public class UserService implements UserDetailsService {
             throw new UserAlreadyExistsException(userName);
         }
 
+        shopCart = new ShopCart();
         User user = new User();
         user.setUserName(userName);
         user.setPassword(passwordEncoder.encode(request.getPassword()));
