@@ -8,12 +8,11 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import ConfectioneryApplicationServer.output.Register;
+import ConfectioneryApplicationServer.output.RegisterRequest;
 import ConfectioneryApplicationServer.output.UserAlreadyExistsException;
 import ConfectioneryApplicationServer.models.User;
 import ConfectioneryApplicationServer.models.UserRealize;
 import ConfectioneryApplicationServer.repositories.UserRepository;
-import ConfectioneryApplicationServer.models.ShopCart;
 
 @Service
 @RequiredArgsConstructor
@@ -23,7 +22,7 @@ public class UserService implements UserDetailsService {
     private ShopCart shopCart;
 
     @Transactional
-    public void addNewUser(Register request) throws UserAlreadyExistsException {
+    public void addNewUser(RegisterRequest request) throws UserAlreadyExistsException {
         String userName = request.getUserName();
         if (userExists(userName)) {
             throw new UserAlreadyExistsException(userName);

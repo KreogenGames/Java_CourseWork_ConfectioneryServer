@@ -14,8 +14,6 @@ public class ShopCart {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    @Column(name = "listOfItems")
-    private String listOfItems;
     @OneToMany(mappedBy = "shopCart", fetch = FetchType.LAZY)
     private List<Item> items;
     //При создании пользователя параллельно создаю корзину

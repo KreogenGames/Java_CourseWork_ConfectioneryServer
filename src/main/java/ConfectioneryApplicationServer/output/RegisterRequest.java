@@ -8,7 +8,7 @@ import javax.validation.constraints.NotNull;
 
 @Getter
 @AllArgsConstructor
-public class Register {
+public class RegisterRequest {
     @NotNull
     @NotEmpty
     private final String userName;
