@@ -19,6 +19,6 @@ public class Item {
     @Column(nullable = false)
     private int numOfItem;
     @ManyToOne
-    @JoinColumn(name = "shopCart_id", nullable = false)
+    @JoinColumn(name = "shopCart_id", referencedColumnName = "id", nullable = false)
     private ShopCart shopCart;
 }

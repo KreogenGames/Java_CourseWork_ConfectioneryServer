@@ -32,6 +32,8 @@ public class UserService implements UserDetailsService {
         User user = new User();
         user.setUserName(userName);
         user.setPassword(passwordEncoder.encode(request.getPassword()));
+        //Проверить на правильность, тк не уверен в корректности реализации связи м/ж корзиной и пользователем
+        user.setShopCart_id(shopCart.getUser().getShopCart_id());
         userRepository.save(user);
     }
 

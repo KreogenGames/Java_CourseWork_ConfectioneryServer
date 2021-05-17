@@ -6,6 +6,6 @@ import ConfectioneryApplicationServer.models.ShopCart;
 
 @Repository
 public interface ShopCartRepository extends JpaRepository<ShopCart, Long> {
-    ShopCart findByShopCartId(String shopCartId);
+    ShopCart findByShopCartId(Long shopCartId);
     ShopCart findByShopCartOwner(String userName);
 }

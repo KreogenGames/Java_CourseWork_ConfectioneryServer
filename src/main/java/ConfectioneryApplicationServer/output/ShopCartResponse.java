@@ -7,7 +7,7 @@ import java.util.List;
 
 @Setter
 @ToString
-public class ShopCartResponse {
+public class ShopCartResponse { //Мб стоит, что-то еще добавить или переоформить
     @NotNull
     private Long id;
     private List<ItemResponse> items;
