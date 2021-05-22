@@ -19,7 +19,6 @@ import ConfectioneryApplicationServer.repositories.UserRepository;
 public class UserService implements UserDetailsService {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
-    private ShopCart shopCart;
 
     @Transactional
     public void addNewUser(RegisterRequest request) throws UserAlreadyExistsException {
@@ -28,10 +27,11 @@ public class UserService implements UserDetailsService {
             throw new UserAlreadyExistsException(userName);
         }
 
-        shopCart = new ShopCart();
+        ShopCart shopCart = new ShopCart();
         User user = new User();
         user.setUserName(userName);
         user.setPassword(passwordEncoder.encode(request.getPassword()));
+        shopCart.setUser(user);
         //Проверить на правильность, тк не уверен в корректности реализации связи м/ж корзиной и пользователем
         user.setShopCart_id(shopCart.getUser().getShopCart_id());
         userRepository.save(user);
