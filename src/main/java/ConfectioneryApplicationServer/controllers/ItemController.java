@@ -1,5 +1,6 @@
 package ConfectioneryApplicationServer.controllers;
 
+import ConfectioneryApplicationServer.models.ResponseCodes;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -20,12 +21,8 @@ public class ItemController {
     private final ShopCartService shopCartService;
     private final ItemService itemService;
 
-    int messageAllRight = 1; //Ошибок не произошло
-    int messageUnsuccessfullDel = 2;//Ошибка при удалении из БД
-    int messageUnsuccessfullAdd = 3;//Ошибка при добавлении в БД
-
     @PostMapping("add")
-    public int add(
+    public String add(
             @Valid @ModelAttribute("addItem") ItemToShopCartRequest itemToShopCartRequest,
             BindingResult result
     ) {
@@ -36,19 +33,19 @@ public class ItemController {
             }
         } catch (Exception e) {
             e.printStackTrace();
-            return messageUnsuccessfullAdd;
+            return String.valueOf(ResponseCodes.messageUnsuccessfullAdd);
         }
-        return messageAllRight;
+        return String.valueOf(ResponseCodes.messageAllRight);
     }
 
     @PostMapping("{itemId}/delete")
-    public int delete(@PathVariable long itemId) {
+    public String delete(@PathVariable long itemId) {
         try {
             itemService.delete(itemId);
         } catch (Exception e) {
             e.printStackTrace();
-            return messageUnsuccessfullDel;
+            return String.valueOf(ResponseCodes.messageUnsuccessfullDel);
         }
-        return messageAllRight;
+        return String.valueOf(ResponseCodes.messageAllRight);
     }
 }

@@ -1,5 +1,6 @@
 package ConfectioneryApplicationServer.controllers;
 
+import ConfectioneryApplicationServer.models.ResponseCodes;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -24,8 +25,9 @@ public class ShopCartController {
             );
         } catch (Exception e) {
             e.printStackTrace();
+            return String.valueOf(ResponseCodes.getMessageUnsuccessfullShopCartGet);
         }
-        return "shopCart";
+        return String.valueOf(ResponseCodes.messageAllRight);
     }
 
     @PostMapping("{shopCartId}")
@@ -40,12 +42,8 @@ public class ShopCartController {
             );
         } catch (Exception e) {
             e.printStackTrace();
+            return String.valueOf(ResponseCodes.getMessageUnsuccessfullShopCartIdGet);
         }
-        return "shopCart";
-    }
-
-    @GetMapping("{shopCartId}/delete")
-    public void getAllShopCarts() { //Мб придумаю где его использовать
-        shopCartService.getAllShopCarts();
+        return String.valueOf(ResponseCodes.messageAllRight);
     }
 }
