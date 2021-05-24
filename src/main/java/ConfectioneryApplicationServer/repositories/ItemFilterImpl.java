@@ -27,7 +27,7 @@ public class ItemFilterImpl implements ItemFilter {
         List<Predicate> predicates = new ArrayList<>();
 
         if (shopCartId != null) {
-            predicates.add(cb.equal(item.get("shopCart_owner").get("Id"), shopCartId));
+            predicates.add(cb.equal(item.get("shopCart").get("id"), shopCartId));
         }
         cq.orderBy(cb.asc(item.get("nameOfItem")));
         cq.where(predicates.toArray(new Predicate[0]));
@@ -47,7 +47,7 @@ public class ItemFilterImpl implements ItemFilter {
             predicates.add(cb.equal(item.get("id"), itemId));
         }
 
-        cq.orderBy(cb.asc(item.get("shopCart_owner").get("Id")));
+        cq.orderBy(cb.asc(item.get("shopCart").get("id")));
         cq.where(predicates.toArray(new Predicate[0]));
 
         return em.createQuery(cq).getResultList();
@@ -66,7 +66,7 @@ public class ItemFilterImpl implements ItemFilter {
             predicates.add(cb.equal(item.get("nameOfItem"), nameOfItem));
         }
 
-        cq.orderBy(cb.asc(item.get("shopCart_owner").get("Id")));
+        cq.orderBy(cb.asc(item.get("shopCart").get("id")));
         cq.where(predicates.toArray(new Predicate[0]));
 
         return em.createQuery(cq).getResultList();
@@ -85,7 +85,7 @@ public class ItemFilterImpl implements ItemFilter {
             predicates.add(cb.equal(item.get("priceOfItem"), priceOfItem));
         }
 
-        cq.orderBy(cb.asc(item.get("shopCart_owner").get("Id")));
+        cq.orderBy(cb.asc(item.get("shopCart").get("id")));
         cq.where(predicates.toArray(new Predicate[0]));
 
         return em.createQuery(cq).getResultList();

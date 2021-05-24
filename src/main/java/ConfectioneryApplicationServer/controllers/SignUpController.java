@@ -7,6 +7,7 @@ import ConfectioneryApplicationServer.services.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,6 +21,11 @@ import java.util.Map;
 public class SignUpController {
     private final UserService userService;
 
+    @GetMapping
+    public String index() {
+        return "sign_up";
+    }
+
     @PostMapping
     public String addUser(
             @Valid @ModelAttribute("signUpUser") RegisterRequest registerRequest,
@@ -29,15 +35,19 @@ public class SignUpController {
         if (!result.hasErrors()) {
             if (!registerRequest.getPassword().equals(registerRequest.getMatchingPassword())) {
                 model.put("notMatched", true);
-                return String.valueOf(ResponseCodes.messageHasNotMatched);
+                return "sign_up";
+                //return String.valueOf(ResponseCodes.messageHasNotMatched);
             }
             try {
                 userService.addNewUser(registerRequest);
+                return "redirect:/login";
             } catch (UserAlreadyExistsException exp) {
                 model.put("alreadyExists", true);
-                return String.valueOf(ResponseCodes.messageAlreadyExists);
+                return "sign_up";
+                //return String.valueOf(ResponseCodes.messageAlreadyExists);
             }
         }
-        return String.valueOf(ResponseCodes.messageAllRight);
+        return "sign_up";
+        //return String.valueOf(ResponseCodes.messageAllRight);
     }
 }

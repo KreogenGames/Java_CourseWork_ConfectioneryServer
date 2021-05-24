@@ -12,12 +12,14 @@ import java.util.List;
 @Table(name = "shopCart_table")
 public class ShopCart {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long shopCartId;
+
     //////////////////////////Не трогать, связь с товаром
     @OneToMany(mappedBy = "shopCart", fetch = FetchType.LAZY) //Аналог ориентации на id
     private List<Item> items;
     //При создании пользователя параллельно создаю корзину
+
     //////////////////////////Не трогать, связь с пользователем
     @OneToOne
     @JoinColumn(name = "user_id")

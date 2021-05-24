@@ -7,5 +7,5 @@ import ConfectioneryApplicationServer.models.Item;
 
 @Repository
 public interface ItemRepository extends JpaRepository<Item, Long>, ItemFilter {
-    void deleteFromShopCart(ShopCart shopCart, Item id);
+    void deleteAllByShopCart(ShopCart shopCart);
 }

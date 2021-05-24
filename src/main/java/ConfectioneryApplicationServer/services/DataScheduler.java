@@ -19,7 +19,7 @@ import java.util.Objects;
 @Component
 @RequiredArgsConstructor
 @ManagedResource(
-        objectName = "Practice24MBeans:category=MBeans,name=DataScheduler"
+        objectName = "ConfectioneryApplicationServerMBeans:category=MBeans,name=DataScheduler"
 )
 public class DataScheduler {
     private final ShopCartService shopCartService;
@@ -53,7 +53,7 @@ public class DataScheduler {
                                 gBufWriter.write(
                                         String.format(
                                                 "%d|%s|%d\n",
-                                                cart.getId(),
+                                                cart.getShopCartId(),
                                                 cart.getUser().getUserName(),
                                                 cart.getItems().size()
                                         )
@@ -73,11 +73,11 @@ public class DataScheduler {
                                 sBufWriter.write(
                                         String.format(
                                                 "%d|%s|%d|%d|%d\n",
-                                                item.getId(),
+                                                item.getItemId(),
                                                 item.getNameOfItem(),
                                                 item.getPriceOfItem(),
                                                 item.getNumOfItem(),
-                                                item.getShopCart().getId()
+                                                item.getShopCart().getShopCartId()
                                                 //.getShopCart_id() //.getShopCart().getId()
                                         )
                                 );

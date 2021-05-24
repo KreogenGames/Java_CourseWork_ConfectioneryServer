@@ -29,6 +29,11 @@ public class UserService implements UserDetailsService {
 
         ShopCart shopCart = new ShopCart();
         User user = new User();
+        /*user.setLastName(request.getLastName());
+        user.setFirstName(request.getFirstName());
+        if(request.getMiddleName() != null){
+            user.setMiddleName(request.getMiddleName());
+        }*/
         user.setUserName(userName);
         user.setPassword(passwordEncoder.encode(request.getPassword()));
         shopCart.setUser(user);

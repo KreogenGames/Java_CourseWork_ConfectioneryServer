@@ -12,7 +12,7 @@ import java.util.List;
 @ToString
 public class ShopCartResponse { //Мб стоит, что-то еще добавить или переоформить
     @NotNull
-    private Long id;
+    private Long shopCartId;
     private List<ItemResponse> items;
-    private User shopCart_owner;
+    private User user;
 }

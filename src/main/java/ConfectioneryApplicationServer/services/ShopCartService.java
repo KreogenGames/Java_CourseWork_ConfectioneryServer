@@ -29,7 +29,7 @@ public class ShopCartService {
             return;
         }
         shopCart = new ShopCart();
-        shopCart.setId(request.getShopCartId());
+        shopCart.setShopCartId(request.getShopCartId());
         shopCartRepository.save(shopCart);
         /*
         emailService.send(

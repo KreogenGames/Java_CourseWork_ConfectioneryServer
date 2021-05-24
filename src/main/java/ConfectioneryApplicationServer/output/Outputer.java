@@ -12,7 +12,7 @@ public class Outputer {
     public List<ItemResponse> toItemResponseList(List<Item> items) {
         return items.stream().map(item -> {
             ItemResponse response = new ItemResponse();
-            response.setId(item.getId());
+            response.setItemId(item.getItemId());
             response.setNameOfItem(item.getNameOfItem());
             response.setPriceOfItem(item.getPriceOfItem());
             response.setNumOfItem(item.getNumOfItem());
@@ -22,8 +22,9 @@ public class Outputer {
 
     public ShopCartResponse toShopCartResponse(ShopCart shopCart) {
         ShopCartResponse response = new ShopCartResponse();
-        response.setId(shopCart.getId());
+        response.setShopCartId(shopCart.getShopCartId());
         response.setItems(toItemResponseList(shopCart.getItems()));
+        response.setUser(shopCart.getUser());
         return response;
     }
 

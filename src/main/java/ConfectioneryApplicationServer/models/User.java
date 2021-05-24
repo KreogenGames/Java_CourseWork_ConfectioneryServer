@@ -13,7 +13,7 @@ import java.io.Serializable;
 @Table(name = "users")
 public class User implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(nullable = false)
     private String lastName;
@@ -23,8 +23,9 @@ public class User implements Serializable {
     private String middleName;
     @Column(nullable = false)
     private String userName;
-    @JsonIgnore
+
     private String password;
+
     //////////////////////////Не трогать
     @OneToOne
     @JoinColumn(name = "shopCart_id", nullable = false)

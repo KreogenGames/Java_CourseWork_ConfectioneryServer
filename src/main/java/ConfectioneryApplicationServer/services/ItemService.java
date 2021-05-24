@@ -2,7 +2,6 @@ package ConfectioneryApplicationServer.services;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ConfectioneryApplicationServer.output.ItemToShopCartRequest;
 import ConfectioneryApplicationServer.models.ShopCart;
@@ -41,7 +40,7 @@ public class ItemService {
         itemsByShopCartId
                 .forEach(it ->
                         log.info(it.getNameOfItem() + " " + it.getPriceOfItem() + " " + it.getNumOfItem()
-                                + " -- " + it.getShopCart().getId()) //.getShopCart_id()) //.getShopCart().getId()
+                                + " -- " + it.getShopCart().getShopCartId()) //.getShopCart_id()) //.getShopCart().getId()
                 );
 
         List<Item> itemsByItemId = itemRepository
@@ -50,7 +49,7 @@ public class ItemService {
         itemsByItemId
                 .forEach(it ->
                         log.info(it.getNameOfItem() + " " + it.getPriceOfItem() + " " + it.getNumOfItem()
-                                + " -- " + it.getShopCart().getId()) //.getShopCart_id()) //.getShopCart().getId()
+                                + " -- " + it.getShopCart().getShopCartId()) //.getShopCart_id()) //.getShopCart().getId()
                 );
         /*
         emailService.send(

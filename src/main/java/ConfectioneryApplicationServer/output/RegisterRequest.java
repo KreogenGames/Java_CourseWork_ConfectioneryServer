@@ -13,7 +13,7 @@ public class RegisterRequest {
     @NotEmpty
     private final String userName;
 
-    @NotNull
+    /*@NotNull
     @NotEmpty
     private String lastName;
 
@@ -21,7 +21,7 @@ public class RegisterRequest {
     @NotEmpty
     private String firstName;
 
-    private String middleName;
+    private String middleName;*/
 
     @NotNull
     @NotEmpty

@@ -10,7 +10,7 @@ import javax.validation.constraints.NotBlank;
 @ToString
 public class ItemResponse {
     @NotNull
-    private Long id;
+    private Long itemId;
     @NotBlank
     private String nameOfItem;
     @NotBlank

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import ConfectioneryApplicationServer.output.ItemToShopCartRequest;
 import ConfectioneryApplicationServer.services.ShopCartService;
 import ConfectioneryApplicationServer.services.ItemService;
+import org.springframework.web.servlet.view.RedirectView;
 
 import javax.validation.Valid;
 
@@ -22,7 +23,7 @@ public class ItemController {
     private final ItemService itemService;
 
     @PostMapping("add")
-    public String add(
+    public RedirectView add(
             @Valid @ModelAttribute("addItem") ItemToShopCartRequest itemToShopCartRequest,
             BindingResult result
     ) {
@@ -33,19 +34,21 @@ public class ItemController {
             }
         } catch (Exception e) {
             e.printStackTrace();
-            return String.valueOf(ResponseCodes.messageUnsuccessfullAdd);
+            //return String.valueOf(ResponseCodes.messageUnsuccessfullAdd);
         }
-        return String.valueOf(ResponseCodes.messageAllRight);
+        return new RedirectView("/home");
+        //return String.valueOf(ResponseCodes.messageAllRight);
     }
 
-    @PostMapping("{itemId}/delete")
-    public String delete(@PathVariable long itemId) {
+    @PostMapping("{shopCartId}/delete")
+    public RedirectView delete(@PathVariable long shopCartId) {
         try {
-            itemService.delete(itemId);
+            itemService.delete(shopCartId);
         } catch (Exception e) {
             e.printStackTrace();
-            return String.valueOf(ResponseCodes.messageUnsuccessfullDel);
+            //return String.valueOf(ResponseCodes.messageUnsuccessfullDel);
         }
-        return String.valueOf(ResponseCodes.messageAllRight);
+        return new RedirectView("/home");
+        //String.valueOf(ResponseCodes.messageAllRight);
     }
 }
