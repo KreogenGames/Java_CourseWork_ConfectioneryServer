@@ -78,6 +78,7 @@ public class DataScheduler {
                                                 item.getPriceOfItem(),
                                                 item.getNumOfItem(),
                                                 item.getShopCart().getId()
+                                                //.getShopCart_id() //.getShopCart().getId()
                                         )
                                 );
                             } catch (IOException e) {

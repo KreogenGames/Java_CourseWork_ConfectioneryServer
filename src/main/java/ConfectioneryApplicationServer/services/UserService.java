@@ -33,18 +33,18 @@ public class UserService implements UserDetailsService {
         user.setPassword(passwordEncoder.encode(request.getPassword()));
         shopCart.setUser(user);
         //Проверить на правильность, тк не уверен в корректности реализации связи м/ж корзиной и пользователем
-        user.setShopCart_id(shopCart.getUser().getShopCart_id());
+        user.setShopCart(shopCart);
         userRepository.save(user);
     }
 
     @Transactional(Transactional.TxType.MANDATORY)
     public boolean userExists(String userName) {
-        return userRepository.findByUsername(userName).isPresent();
+        return userRepository.findByUserName(userName).isPresent();
     }
 
     @Override
     public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
-        User user = userRepository.findByUsername(userName)
+        User user = userRepository.findByUserName(userName)
                 .orElseThrow(
                         () -> new UsernameNotFoundException("User not found: " + userName)
                 );

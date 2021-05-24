@@ -1,5 +1,6 @@
 package ConfectioneryApplicationServer.output;
 
+import ConfectioneryApplicationServer.models.User;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.ToString;

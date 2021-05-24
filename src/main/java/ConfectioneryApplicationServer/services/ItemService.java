@@ -41,7 +41,7 @@ public class ItemService {
         itemsByShopCartId
                 .forEach(it ->
                         log.info(it.getNameOfItem() + " " + it.getPriceOfItem() + " " + it.getNumOfItem()
-                                + " -- " + it.getShopCart().getId())
+                                + " -- " + it.getShopCart().getId()) //.getShopCart_id()) //.getShopCart().getId()
                 );
 
         List<Item> itemsByItemId = itemRepository
@@ -50,7 +50,7 @@ public class ItemService {
         itemsByItemId
                 .forEach(it ->
                         log.info(it.getNameOfItem() + " " + it.getPriceOfItem() + " " + it.getNumOfItem()
-                                + " -- " + it.getShopCart().getId())
+                                + " -- " + it.getShopCart().getId()) //.getShopCart_id()) //.getShopCart().getId()
                 );
         /*
         emailService.send(

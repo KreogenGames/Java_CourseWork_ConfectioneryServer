@@ -14,9 +14,17 @@ public class ShopCart {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    @OneToMany(mappedBy = "shopCart", fetch = FetchType.LAZY)
+    //////////////////////////Не трогать, связь с товаром
+    @OneToMany(mappedBy = "shopCart", fetch = FetchType.LAZY) //Аналог ориентации на id
     private List<Item> items;
     //При создании пользователя параллельно создаю корзину
-    @OneToOne(mappedBy = "shopCart")
+    //////////////////////////Не трогать, связь с пользователем
+    @OneToOne
+    @JoinColumn(name = "user_id")
     private User user;
+    //////////////////////////
+
+    /*@OneToOne
+    @JoinColumn(name = "shopCart_owner", referencedColumnName = "userName", nullable = false)
+    private User shopCart_owner;*/
 }

@@ -18,7 +18,9 @@ public class Item {
     private int priceOfItem;
     @Column(nullable = false)
     private int numOfItem;
+    ////////////////Тоже не трогать связь с корзиной
     @ManyToOne
-    @JoinColumn(name = "shopCart_id", referencedColumnName = "id", nullable = false)
+    @JoinColumn(name = "shopCart_id", nullable = false)
     private ShopCart shopCart;
+    ////////////////
 }

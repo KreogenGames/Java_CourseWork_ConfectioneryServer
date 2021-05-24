@@ -1,5 +1,6 @@
 package ConfectioneryApplicationServer.output;
 
+import ConfectioneryApplicationServer.models.User;
 import com.sun.istack.NotNull;
 import lombok.Getter;
 import lombok.Setter;
@@ -13,4 +14,5 @@ public class ShopCartResponse { //Мб стоит, что-то еще добав
     @NotNull
     private Long id;
     private List<ItemResponse> items;
+    private User shopCart_owner;
 }

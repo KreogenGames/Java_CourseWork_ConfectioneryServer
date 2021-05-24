@@ -25,7 +25,9 @@ public class User implements Serializable {
     private String userName;
     @JsonIgnore
     private String password;
+    //////////////////////////Не трогать
     @OneToOne
-    @JoinColumn(name = "shopCart_id", referencedColumnName = "id", nullable = false)
-    private ShopCart shopCart_id;
+    @JoinColumn(name = "shopCart_id", nullable = false)
+    private ShopCart shopCart;
+    //////////////////////////
 }
