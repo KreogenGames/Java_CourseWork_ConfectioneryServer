@@ -15,4 +15,5 @@ public class ShopCartResponse { //Мб стоит, что-то еще добав
     private Long shopCartId;
     private List<ItemResponse> items;
     private User user;
+    private String owner;
 }

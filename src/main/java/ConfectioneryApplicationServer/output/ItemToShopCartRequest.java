@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.ToString;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 @Getter
 @ToString
@@ -13,10 +14,10 @@ import javax.validation.constraints.NotBlank;
 public class ItemToShopCartRequest {
     @NotBlank
     private final String nameOfItem;
-    @NotBlank
+    @NotNull
     private final int priceOfItem;
-    @NotBlank
+    @NotNull
     private final int numOfItem;
-    @NotBlank
+    @NotNull
     private final Long shopCartId;
 }

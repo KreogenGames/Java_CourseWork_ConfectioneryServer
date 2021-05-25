@@ -15,6 +15,9 @@ public class ShopCart {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long shopCartId;
 
+    @Column
+    private String owner;
+
     //////////////////////////Не трогать, связь с товаром
     @OneToMany(mappedBy = "shopCart", fetch = FetchType.LAZY) //Аналог ориентации на id
     private List<Item> items;

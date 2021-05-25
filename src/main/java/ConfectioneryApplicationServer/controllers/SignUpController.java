@@ -1,7 +1,6 @@
 package ConfectioneryApplicationServer.controllers;
 
-import ConfectioneryApplicationServer.models.ResponseCodes;
-import ConfectioneryApplicationServer.output.RegisterRequest;
+import ConfectioneryApplicationServer.output.SignUpRequest;
 import ConfectioneryApplicationServer.output.UserAlreadyExistsException;
 import ConfectioneryApplicationServer.services.UserService;
 import lombok.RequiredArgsConstructor;
@@ -28,26 +27,23 @@ public class SignUpController {
 
     @PostMapping
     public String addUser(
-            @Valid @ModelAttribute("signUpUser") RegisterRequest registerRequest,
+            @Valid @ModelAttribute("signUpUser") SignUpRequest signUpRequest,
             BindingResult result,
             Map<String, Object> model
     ) {
         if (!result.hasErrors()) {
-            if (!registerRequest.getPassword().equals(registerRequest.getMatchingPassword())) {
+            if (!signUpRequest.getPassword().equals(signUpRequest.getMatchingPassword())) {
                 model.put("notMatched", true);
                 return "sign_up";
-                //return String.valueOf(ResponseCodes.messageHasNotMatched);
             }
             try {
-                userService.addNewUser(registerRequest);
+                userService.addNewUser(signUpRequest);
                 return "redirect:/login";
             } catch (UserAlreadyExistsException exp) {
                 model.put("alreadyExists", true);
                 return "sign_up";
-                //return String.valueOf(ResponseCodes.messageAlreadyExists);
             }
         }
         return "sign_up";
-        //return String.valueOf(ResponseCodes.messageAllRight);
     }
 }

@@ -23,10 +23,12 @@ dependencies {
     implementation group: 'javax.validation', name: 'validation-api', version: '2.0.1.Final'
     implementation group: 'org.springframework.session', name: 'spring-session-jdbc', version: '2.4.3'
     implementation group: 'org.springframework.security', name: 'spring-security-core', version: '5.4.2'
+    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-mustache', version: '2.4.5'
     implementation group: 'org.springframework.boot', name: 'spring-boot-starter-mail', version: '1.2.0.RELEASE'
 
     implementation 'org.springframework.boot:spring-boot-starter-validation:2.4.0'
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-starter-mustache'
     implementation 'org.springframework.boot:spring-boot-starter-security'
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.session:spring-session-core'

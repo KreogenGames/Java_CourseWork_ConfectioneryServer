@@ -1,1 +1,0 @@
-id|nameOfItem|priceOfItem|numOfItem|shopCartOfItem

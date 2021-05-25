@@ -54,7 +54,7 @@ public class DataScheduler {
                                         String.format(
                                                 "%d|%s|%d\n",
                                                 cart.getShopCartId(),
-                                                cart.getUser().getUserName(),
+                                                cart.getUser().getUsername(),
                                                 cart.getItems().size()
                                         )
                                 );

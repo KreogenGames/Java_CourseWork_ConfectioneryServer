@@ -8,10 +8,10 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import ConfectioneryApplicationServer.output.RegisterRequest;
+import ConfectioneryApplicationServer.output.SignUpRequest;
 import ConfectioneryApplicationServer.output.UserAlreadyExistsException;
 import ConfectioneryApplicationServer.models.User;
-import ConfectioneryApplicationServer.models.UserRealize;
+import ConfectioneryApplicationServer.models.UserPrincipal;
 import ConfectioneryApplicationServer.repositories.UserRepository;
 
 @Service
@@ -21,10 +21,10 @@ public class UserService implements UserDetailsService {
     private final PasswordEncoder passwordEncoder;
 
     @Transactional
-    public void addNewUser(RegisterRequest request) throws UserAlreadyExistsException {
-        String userName = request.getUserName();
-        if (userExists(userName)) {
-            throw new UserAlreadyExistsException(userName);
+    public void addNewUser(SignUpRequest request) throws UserAlreadyExistsException {
+        String username = request.getUsername();
+        if (userExists(username)) {
+            throw new UserAlreadyExistsException(username);
         }
 
         ShopCart shopCart = new ShopCart();
@@ -34,25 +34,25 @@ public class UserService implements UserDetailsService {
         if(request.getMiddleName() != null){
             user.setMiddleName(request.getMiddleName());
         }*/
-        user.setUserName(userName);
+        user.setUsername(username);
         user.setPassword(passwordEncoder.encode(request.getPassword()));
         shopCart.setUser(user);
         //Проверить на правильность, тк не уверен в корректности реализации связи м/ж корзиной и пользователем
-        user.setShopCart(shopCart);
+        //user.setShopCart(shopCart);
         userRepository.save(user);
     }
 
     @Transactional(Transactional.TxType.MANDATORY)
-    public boolean userExists(String userName) {
-        return userRepository.findByUserName(userName).isPresent();
+    public boolean userExists(String username) {
+        return userRepository.findByUsername(username).isPresent();
     }
 
     @Override
-    public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
-        User user = userRepository.findByUserName(userName)
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        User user = userRepository.findByUsername(username)
                 .orElseThrow(
-                        () -> new UsernameNotFoundException("User not found: " + userName)
+                        () -> new UsernameNotFoundException("User not found: " + username)
                 );
-        return new UserRealize(user);
+        return new UserPrincipal(user);
     }
 }

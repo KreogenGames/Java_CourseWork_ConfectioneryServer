@@ -15,20 +15,21 @@ public class User implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(nullable = false)
+
+    /*@Column(nullable = false)
     private String lastName;
     @Column(nullable = false)
     private String firstName;
+    @Column
+    private String middleName;*/
     @Column(nullable = false)
-    private String middleName;
-    @Column(nullable = false)
-    private String userName;
-
+    private String username;
+    @JsonIgnore
     private String password;
 
     //////////////////////////Не трогать
-    @OneToOne
-    @JoinColumn(name = "shopCart_id", nullable = false)
-    private ShopCart shopCart;
+    /*@OneToOne
+    @JoinColumn(name = "shopCart_id")
+    private ShopCart shopCart;*/
     //////////////////////////
 }

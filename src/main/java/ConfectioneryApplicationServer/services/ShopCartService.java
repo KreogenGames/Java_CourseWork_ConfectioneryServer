@@ -58,4 +58,14 @@ public class ShopCartService {
         }
         return tooutput.apply(shopCart.get());
     }
+
+    @Transactional
+    public void delete(long id) {
+        Optional<ShopCart> shopCart = shopCartRepository.findById(id);
+        if (shopCart.isEmpty()) {
+            return;
+        }
+        itemRepository.deleteAllByShopCart(shopCart.get());
+        shopCartRepository.deleteById(id);
+    }
 }
